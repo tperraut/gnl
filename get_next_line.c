@@ -6,17 +6,17 @@
 /*   By: tperraut <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/18 15:19:13 by tperraut          #+#    #+#             */
-/*   Updated: 2015/11/28 17:26:37 by tperraut         ###   ########.fr       */
+/*   Updated: 2017/12/08 14:36:18 by tperraut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <sys/types.h>
 #include <sys/uio.h>
 #include <string.h>
-#include "libft/include/libft.h"
+#include "libft.h"
 #include "get_next_line.h"
 
-int		get_end(char **line, char **myline, char **temp)
+static int	get_end(char **line, char **myline, char **temp)
 {
 	if (!(*line = ft_strdup(*myline)))
 		return (-1);
@@ -25,7 +25,7 @@ int		get_end(char **line, char **myline, char **temp)
 	return (1);
 }
 
-char	*ft_join_free(char **tofree, char *tojoin)
+static char	*ft_join_free(char **tofree, char *tojoin)
 {
 	char	*dst;
 
@@ -36,7 +36,7 @@ char	*ft_join_free(char **tofree, char *tojoin)
 	return (dst);
 }
 
-int		ft_check_eof(char **line, char **myline)
+static int	ft_check_eof(char **line, char **myline)
 {
 	if (!line)
 		return (-1);
@@ -52,7 +52,7 @@ int		ft_check_eof(char **line, char **myline)
 	return (0);
 }
 
-int		get_next_line(int const fd, char **line)
+int			get_next_line(int const fd, char **line)
 {
 	char		buf[CHECK(BUFF_SIZE) + 1];
 	static char	*myline = NULL;
